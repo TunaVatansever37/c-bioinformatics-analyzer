@@ -1,0 +1,18 @@
+==================================================
+BIYOINFORMATIK ANALIZ RAPORU
+==================================================
+Sekans Basligi : Seq_104_Insulin_Gene_Fragment
+------------------ DIZILIMLER --------------------
+Orijinal DNA (5'->3') : ATGTTTGCTGCTTAAGGC
+RNA Sekansi (5'->3') : AUGUUUGCUGCUUAAGGC
+Ters-Tamamlayici DNA : TACAAACGACGAATTCCG
+----------------- ISTATISTIKLER ------------------
+Toplam Nukleotid : 18
+A Sayisi : 3
+T Sayisi : 7
+G Sayisi : 5
+C Sayisi : 3
+GC Orani : %.2f
+------------- PROTEIN TRANSLASYONU ---------------
+Sentezlenen Protein : Met-Phe-Ala-Ala-[STOP]
+==================================================

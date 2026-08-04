@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
 #include "dna_analiz.h"
 
 /**
- *Fonksiyon,  dna diziliminde yer alan a(adenin) t(timin) g(guanin) ve c(sitozin) nükleotidlerinin tamamlayıcı nükleotidleri ile eşler.
- *nükleotidlerin tamamlayıcı nükleotidleri: a - t, t - a, g - c, c - g
- * @param dna -  nükleotid dizilimin bulunduğu sarmal yapıdaki yönetici molekül
- * @param comp - nükleotidlerin tamamlayıcı nükleotid karşılıkları
- * @param uzunluk - dna dizilimindeki karakterlerin toplam uzunluğu
+ * Fonksiyon, dna diziliminde yer alan a(adenin) t(timin) g(guanin) ve c(sitozin) nükleotidlerinin tamamlayıcı nükleotidleri ile eşler.
  */
 void dnaTamamla(char dna[], char comp[], int uzunluk)
 {
@@ -34,21 +32,9 @@ void dnaTamamla(char dna[], char comp[], int uzunluk)
 
 /**
  * @brief DNA dizisindeki A, T, C ve G nükleotitlerinin sayılarını hesaplar.
- *
- * Fonksiyon, verilen DNA karakter dizisini baştan sona tarar ve her bir
- * nükleotitin (A, T, C, G) kaç kez geçtiğini sayarak, adresleri iletilen
- * işaretçi (pointer) değişkenlerine yazar.
- *
- * @param dna     Analiz edilecek DNA karakter dizisi (string)
- * @param uzunluk DNA dizisinin karakter sayısı
- * @param a       'A' (Adenin) sayısının saklanacağı işaretçi
- * @param t       'T' (Timin) sayısının saklanacağı işaretçi
- * @param c       'C' (Sitozin) sayısının saklanacağı işaretçi
- * @param g       'G' (Guanin) sayısının saklanacağı işaretçi
  */
 void nukleotidSay(char dna[], int uzunluk, int *a, int *t, int *c, int *g)
 {
-    /* Dizideki her bir karakteri sırayla kontrol et */
     for (int i = 0; i < uzunluk; i++)
     {
         switch (dna[i])
@@ -66,22 +52,11 @@ void nukleotidSay(char dna[], int uzunluk, int *a, int *t, int *c, int *g)
             (*t)++;
             break;
         default:
-            /* Geçersiz karakterler 'gecerliMi' fonksiyonunda süzüldüğü için
-               burada ek bir işlem yapmaya gerek yoktur. */
             break;
         }
     }
 }
 
-/*
-*Fonksiyon, dna düzlemi içerisinde yer alan g(guanin) ve c(sitozin)' in miktarının yzüdesini gösterir
-*örneğin: dna dizilimi = (gcta) gc orani = %50
-* @param g - dna diziliminde bulunan Guanin nükleotidi
-* @param c -  dna diziliminde bulunan sitozin nükleotidi
-* @param uzunluk - dna dizilimindeki karakterlerin toplam uzunluğu
-
-
-*/
 float gcOrani(int g, int c, int uzunluk)
 {
     if (uzunluk == 0)
@@ -89,14 +64,6 @@ float gcOrani(int g, int c, int uzunluk)
     return ((float)(g + c) / (float)uzunluk) * 100.0f;
 }
 
-/**
- * Fonksiyon, dna düzlemi içerisinde yer alan t(Timin) nükleotidini rna diziliminine uygun yapmak için u(urasil) nükleotidine çevirir.
- * örneğin: dna dizilimi = tagcgtacg rna dizilimli yeni hali = uagcguacg
- * bu sayede dna diziliminin rna dizilimine çevirdiğimizde nasıl göründüğünü öğreniriz.
- * @param dna - nükleotid dizilimin bulunduğu sarmal yapıdaki yönetici molekül
- * @param rna - dna dizilimindeki timin nükleotidlerinin urasile çevrilmiş hali
- * @param uzunluk -  dna dizilimindeki karakterlerin toplam uzunluğu
- */
 void dnaDonustur(char *dna, char *rna, int uzunluk)
 {
     for (int i = 0; i < uzunluk; i++)
@@ -106,13 +73,6 @@ void dnaDonustur(char *dna, char *rna, int uzunluk)
     rna[uzunluk] = '\0';
 }
 
-/**
- * Fonksiyon, rna dizilimi içerisinde protein sentezi yapabilecek 3 er li nükleotid dizilimlerini alıp hangi sentezi yapabileceklerini söyler
- * örneğin - gcutata - gcu üçlüsü Ala(Alanin) sentezi yapabilir
- * @param rna - dna dizilimindeki timin nükleotidlerinin urasile çevrilmiş hali
- * @param uzunluk - dna dizilimindeki karakterlerin toplam uzunluğu
- * @param yazdir - strcat ile üzerine kopya yazacağımız boş alan
- */
 int proteinSentezi(char rna[], int uzunluk, char yazdir[])
 {
     yazdir[0] = '\0';
@@ -146,15 +106,13 @@ int proteinSentezi(char rna[], int uzunluk, char yazdir[])
         }
         else if ((rna[i] == 'G' && rna[i + 1] == 'A' && rna[i + 2] == 'U') || (rna[i] == 'G' && rna[i + 1] == 'A' && rna[i + 2] == 'C'))
         {
-            strcat(yazdir, "-Asp");
+            strcat(yazdir, "Asp");
             strcat(yazdir, "-");
             bulundu = 1;
         }
         else if ((rna[i] == 'U' && rna[i + 1] == 'A' && rna[i + 2] == 'A') || (rna[i] == 'U' && rna[i + 1] == 'A' && rna[i + 2] == 'G') || (rna[i] == 'U' && rna[i + 1] == 'G' && rna[i + 2] == 'A'))
         {
-
             strcat(yazdir, "[STOP]");
-
             break;
         }
         else if ((rna[i] == 'U' && rna[i + 1] == 'G' && rna[i + 2] == 'U') || (rna[i] == 'U' && rna[i + 1] == 'G' && rna[i + 2] == 'C'))
@@ -199,7 +157,7 @@ int proteinSentezi(char rna[], int uzunluk, char yazdir[])
             strcat(yazdir, "-");
             bulundu = 1;
         }
-        else if ((rna[i] == 'U' && rna[i + 1] == 'A' && rna[i + 2] == 'Y') || (rna[i] == 'U' && rna[i + 1] == 'A' && rna[i + 2] == 'C'))
+        else if ((rna[i] == 'U' && rna[i + 1] == 'A' && rna[i + 2] == 'C'))
         {
             strcat(yazdir, "Tyr");
             bulundu = 1;
