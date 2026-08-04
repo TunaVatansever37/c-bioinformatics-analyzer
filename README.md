@@ -20,4 +20,4 @@ Derleme işlemi tamamlandıktan sonra programı çalıştırarak analiz yapmak i
 ## Güncellemelerden haberdar olmak için sayfamızdaki commit satırlarını okumayı ihmal etmeyiniz
 
 
-## Kütüphanemize göz attığınız için teşekkürler
+## Kütüphanemize göz attığınız için teşekkürler yine bekleriz:)
