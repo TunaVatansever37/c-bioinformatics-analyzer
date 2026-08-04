@@ -5,8 +5,10 @@ Bu proje, C programlama dili kullanılarak geliştirilmiş temel bir biyoinforma
 ## Özellikler (Features)
 * DNA zincirlerinin tamamlayıcı (komplementer) eşleniklerinin hesaplanması.
 * Nükleotid sayımı (A, T, G, C) ve dizilim analizleri.
-* Dosya okuma (I/O) işlemleri üzerinden veri işleme ve raporlama.
-
+* DNA dizilimi içerisindeki sentezlenebilir proteinleri raporlama.
+* DNA zincirindeki nükleoitlerin tamamlayıcı nükleotidini raporlama.
+* DNA dizilimindeki G (Guanin) ve C (Sitozin) oranının kontrolü ve raporlanması.
+* DNA dizilimindeki T (Timin) nükleotidini, U (Urasil) nükleotidine çevirerek DNA dizilimini RNA dizilimi şeklinde raporlanması.
 ## Derleme ve Çalıştırma
 
 Projeyi yerel ortamda derlemek için terminal ekranında aşağıdaki komutu çalıştırın:
