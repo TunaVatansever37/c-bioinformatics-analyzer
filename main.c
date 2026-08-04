@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
         dna[i] = toupper(dna[i]);
         if (dna[i] != 'A' && dna[i] != 'G' && dna[i] != 'C' && dna[i] != 'T')
         {
-            printf("HATALI DNA DIZILIMI DETECTED!\n");
+            printf("HATALI DNA DIZILIMI!\n");
             return 1;
         }
     }
