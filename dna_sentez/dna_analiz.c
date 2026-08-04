@@ -9,7 +9,7 @@
  * @param comp - nükleotidlerin tamamlayıcı nükleotid karşılıkları
  * @param uzunluk - dna dizilimindeki karakterlerin toplam uzunluğu
  */
-void dna_tamamla(char dna[], char comp[], int uzunluk)
+void dnaTamamla(char dna[], char comp[], int uzunluk)
 {
     for (int i = 0; i < uzunluk; i++)
     {
@@ -46,7 +46,7 @@ void dna_tamamla(char dna[], char comp[], int uzunluk)
  * @param c       'C' (Sitozin) sayısının saklanacağı işaretçi
  * @param g       'G' (Guanin) sayısının saklanacağı işaretçi
  */
-void nukleotid_say(char dna[], int uzunluk, int *a, int *t, int *c, int *g)
+void nukleotidSay(char dna[], int uzunluk, int *a, int *t, int *c, int *g)
 {
     /* Dizideki her bir karakteri sırayla kontrol et */
     for (int i = 0; i < uzunluk; i++)
@@ -82,7 +82,7 @@ void nukleotid_say(char dna[], int uzunluk, int *a, int *t, int *c, int *g)
 
 
 */
-float gc_orani(int g, int c, int uzunluk)
+float gcOrani(int g, int c, int uzunluk)
 {
     if (uzunluk == 0)
         return 0.0f;
@@ -113,7 +113,7 @@ void dnaDonustur(char *dna, char *rna, int uzunluk)
  * @param uzunluk - dna dizilimindeki karakterlerin toplam uzunluğu
  * @param yazdir - strcat ile üzerine kopya yazacağımız boş alan
  */
-int protein_sentezi(char rna[], int uzunluk, char yazdir[])
+int proteinSentezi(char rna[], int uzunluk, char yazdir[])
 {
     yazdir[0] = '\0';
     int bulundu = 0;
