@@ -1,1 +1,18 @@
-"DNA Analiz Projesi"
+# DNA ve RNA Analizör Kütüphanesi
+
+Bu proje, C programlama dili kullanılarak geliştirilmiş temel bir biyoinformatik analiz aracıdır. Proje kapsamında DNA ve RNA dizilimleri üzerinde çeşitli analizler yapılmaktadır.
+
+## Özellikler (Features)
+* DNA zincirlerinin tamamlayıcı (komplementer) eşleniklerinin hesaplanması.
+* Nükleotid sayımı (A, T, G, C) ve dizilim analizleri.
+* Dosya okuma (I/O) işlemleri üzerinden veri işleme ve raporlama.
+
+## Derleme ve Çalıştırma
+
+Projeyi yerel ortamda derlemek için terminal ekranında aşağıdaki komutu çalıştırın:
+
+gcc test.c dna_sentez/dna_analiz.c -o bioinfo_app
+
+Derleme işlemi tamamlandıktan sonra programı çalıştırarak analiz yapmak için şu komutu kullanın:
+
+./bioinfo_app input.fasta report.txt
