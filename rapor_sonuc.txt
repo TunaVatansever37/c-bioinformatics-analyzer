@@ -12,7 +12,7 @@ A Sayisi : 3
 T Sayisi : 7
 G Sayisi : 5
 C Sayisi : 3
-GC Orani : %.2f
+GC Orani : % 44.44
 ------------- PROTEIN TRANSLASYONU ---------------
 Sentezlenen Protein : Met-Phe-Ala-Ala-[STOP]
 ==================================================

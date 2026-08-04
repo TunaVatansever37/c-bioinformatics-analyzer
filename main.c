@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
     fprintf(fp_out, "T Sayisi : %d\n", t);
     fprintf(fp_out, "G Sayisi : %d\n", g);
     fprintf(fp_out, "C Sayisi : %d\n", c);
-    fprintf(fp_out, "GC Orani : %%.2f\n", oran);
+    fprintf(fp_out, "GC Orani : %% %.2f\n", oran);
     fprintf(fp_out, "------------- PROTEIN TRANSLASYONU ---------------\n");
     fprintf(fp_out, "Sentezlenen Protein : %s\n", yazdir);
     fprintf(fp_out, "==================================================\n");
