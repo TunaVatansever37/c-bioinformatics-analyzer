@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "dna_sentez/dna_analiz.h"
+
 int main(int argc, char *argv[])
 {
     if (argc != 3)
@@ -13,7 +14,7 @@ int main(int argc, char *argv[])
     char *girdi_dosyasi = argv[1];
     char *cikti_dosyasi = argv[2];
 
-    FILE *fp_in = fopen(girdi_dosyasi, "r");
+       FILE *fp_in = fopen(girdi_dosyasi, "r");
     if (fp_in == NULL)
     {
         printf("Hata: Girdi dosyasi acilamadi!\n");
