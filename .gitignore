@@ -1,0 +1,7 @@
+*.o
+*.exe
+a.out
+bioinfo_app
+report.txt
+.vscode/
+.idea/
