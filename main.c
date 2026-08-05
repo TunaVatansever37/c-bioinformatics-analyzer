@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
     }
 
     fprintf(fp_out, "==================================================\n==================================================\n");
-    fprintf(fp_out, "BIYOINFORMATIK ANALIZ RAPORU\n");
+    fprintf(fp_out, "                                 BIYOINFORMATIK ANALIZ RAPORU\n");
     fprintf(fp_out, "==================================================\n==================================================\n");
     fprintf(fp_out, "Sekans Basligi : %s\n", baslik);
     fprintf(fp_out, "------------------ DIZILIMLER --------------------\n");
