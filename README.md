@@ -17,7 +17,7 @@ gcc test.c dna_sentez/dna_analiz.c -o bioinfo_app
 
 Derleme işlemi tamamlandıktan sonra programı çalıştırarak analiz yapmak için şu komutu kullanın:
 
-./bioinfo_app input.fasta report.txt
+ .\test.exe doku_analiz.fasta rapor_sonuc.txt
 
 ## Güncellemelerden haberdar olmak için sayfamızdaki commit satırlarını okumayı ihmal etmeyiniz
 
