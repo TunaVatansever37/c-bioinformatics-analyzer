@@ -13,7 +13,7 @@ Bu proje, C programlama dili kullanılarak geliştirilmiş temel bir biyoinforma
 
 Projeyi yerel ortamda derlemek için terminal ekranında aşağıdaki komutu çalıştırın:
 
-gcc test.c dna_sentez/dna_analiz.c -o bioinfo_app
+gcc main.c dna_sentez/dna_analiz.c -o bioinfo_app
 
 Derleme işlemi tamamlandıktan sonra programı çalıştırarak analiz yapmak için şu komutu kullanın:
 
