@@ -14,17 +14,17 @@ int dosyadanAnalizEt(char *input, char *output)
     }
 
     fseek(fp_in, 0, SEEK_END);
-    long dosya_boyutu = ftell(fp_in);
+    long max_boyut = ftell(fp_in);
     rewind(fp_in);
 
-    if (dosya_boyutu <= 0)
+    if (max_boyut <= 0)
     {
         printf("Hata: Dosya bos!\n");
         fclose(fp_in);
         return 1;
     }
 
-    char *dna = malloc((dosya_boyutu + 1) * sizeof(char));
+    char *dna = malloc((max_boyut + 1) * sizeof(char));
     if (dna == NULL)
     {
         printf("Hata: Bellek tahsis edilemedi!\n");
@@ -35,7 +35,6 @@ int dosyadanAnalizEt(char *input, char *output)
 
     char satir[256];
     char baslik[256] = "";
-    size_t dna_uzunlugu = 0;
 
     while (fgets(satir, sizeof(satir), fp_in) != NULL)
     {
@@ -50,7 +49,6 @@ int dosyadanAnalizEt(char *input, char *output)
         else
         {
             strcat(dna, satir);
-            dna_uzunlugu += strlen(satir);
         }
     }
     fclose(fp_in);
@@ -63,6 +61,8 @@ int dosyadanAnalizEt(char *input, char *output)
         return 1;
     }
 
+    printf("Gercek DNA uzunlugu: %d\n", uzunluk);
+
     for (int i = 0; i < uzunluk; i++)
     {
         dna[i] = toupper(dna[i]);
@@ -71,7 +71,7 @@ int dosyadanAnalizEt(char *input, char *output)
     int a = 0, t = 0, g = 0, c = 0;
     char *rna = malloc((uzunluk + 1) * sizeof(char));
     char *comp = malloc((uzunluk + 1) * sizeof(char));
-    char *yazdir = malloc((uzunluk + 1) * sizeof(char));
+    char *yazdir = malloc((uzunluk * 5) + 1);
 
     if (rna == NULL || comp == NULL || yazdir == NULL)
     {
@@ -146,6 +146,9 @@ void dnaTamamla(char dna[], char comp[], int uzunluk)
         case 'G':
             comp[i] = 'C';
             break;
+        default:
+            comp[i] = dna[i];
+            break;
         }
     }
     comp[uzunluk] = '\0';
@@ -191,86 +194,86 @@ void dnaDonustur(char *dna, char *rna, int uzunluk)
     rna[uzunluk] = '\0';
 }
 
-int proteinSentezi(char rna[], int uzunluk, char yazdir[])
+int proteinSentezi(char rna[], int uzunluk, char aminoasit[])
 {
-    yazdir[0] = '\0';
+    aminoasit[0] = '\0';
     int bulundu = 0;
 
     for (int i = 0; i < uzunluk - 2; i += 3)
     {
         if (rna[i] == 'A' && rna[i + 1] == 'U' && rna[i + 2] == 'G')
         {
-            strcat(yazdir, "Met-");
+            strcat(aminoasit, "Met-");
             bulundu = 1;
         }
         else if ((rna[i] == 'G' && rna[i + 1] == 'C' && rna[i + 2] == 'U') || (rna[i] == 'G' && rna[i + 1] == 'C' && rna[i + 2] == 'C') || (rna[i] == 'G' && rna[i + 1] == 'C' && rna[i + 2] == 'A') || (rna[i] == 'G' && rna[i + 1] == 'C' && rna[i + 2] == 'G'))
         {
-            strcat(yazdir, "Ala-");
+            strcat(aminoasit, "Ala-");
             bulundu = 1;
         }
         else if ((rna[i] == 'C' && rna[i + 1] == 'G' && rna[i + 2] == 'U') || (rna[i] == 'C' && rna[i + 1] == 'G' && rna[i + 2] == 'C') || (rna[i] == 'C' && rna[i + 1] == 'G' && rna[i + 2] == 'A') || (rna[i] == 'C' && rna[i + 1] == 'G' && rna[i + 2] == 'G') || (rna[i] == 'A' && rna[i + 1] == 'G' && rna[i + 2] == 'A') || (rna[i] == 'A' && rna[i + 1] == 'G' && rna[i + 2] == 'G'))
         {
-            strcat(yazdir, "Arg-");
+            strcat(aminoasit, "Arg-");
             bulundu = 1;
         }
         else if ((rna[i] == 'A' && rna[i + 1] == 'A' && rna[i + 2] == 'U') || (rna[i] == 'A' && rna[i + 1] == 'A' && rna[i + 2] == 'C'))
         {
-            strcat(yazdir, "Asn-");
+            strcat(aminoasit, "Asn-");
             bulundu = 1;
         }
         else if ((rna[i] == 'G' && rna[i + 1] == 'A' && rna[i + 2] == 'U') || (rna[i] == 'G' && rna[i + 1] == 'A' && rna[i + 2] == 'C'))
         {
-            strcat(yazdir, "Asp-");
+            strcat(aminoasit, "Asp-");
             bulundu = 1;
         }
         else if ((rna[i] == 'U' && rna[i + 1] == 'A' && rna[i + 2] == 'A') || (rna[i] == 'U' && rna[i + 1] == 'A' && rna[i + 2] == 'G') || (rna[i] == 'U' && rna[i + 1] == 'G' && rna[i + 2] == 'A'))
         {
-            strcat(yazdir, "[STOP]");
+            strcat(aminoasit, "[STOP]");
             break;
         }
-        else if ((rna[i] == 'U' && rna[i + 1] == 'G' && rna[i + 2] == 'U') || (rna[i] == 'U' && rna[i + 1] == 'G' && rna[i + 2] == 'C'))
+        else if ((rna[i] == 'U' && rna[i + 1] == 'G' && rna[i + 2] == 'U') || (rna[i] == 'U' && rna[i + 1] == 'G' && rna[i + 1] == 'C'))
         {
-            strcat(yazdir, "Cys-");
+            strcat(aminoasit, "Cys-");
             bulundu = 1;
         }
         else if ((rna[i] == 'C' && rna[i + 1] == 'A' && rna[i + 2] == 'A') || (rna[i] == 'C' && rna[i + 1] == 'A' && rna[i + 2] == 'G'))
         {
-            strcat(yazdir, "Gln-");
+            strcat(aminoasit, "Gln-");
             bulundu = 1;
         }
         else if ((rna[i] == 'G' && rna[i + 1] == 'A' && rna[i + 2] == 'A') || (rna[i] == 'G' && rna[i + 1] == 'A' && rna[i + 2] == 'G'))
         {
-            strcat(yazdir, "Glu-");
+            strcat(aminoasit, "Glu-");
             bulundu = 1;
         }
         else if ((rna[i] == 'G' && rna[i + 1] == 'G' && rna[i + 2] == 'U') || (rna[i] == 'G' && rna[i + 1] == 'G' && rna[i + 2] == 'C') || (rna[i] == 'G' && rna[i + 1] == 'G' && rna[i + 2] == 'A') || (rna[i] == 'G' && rna[i + 1] == 'G' && rna[i + 2] == 'G'))
         {
-            strcat(yazdir, "Gly-");
+            strcat(aminoasit, "Gly-");
             bulundu = 1;
         }
         else if ((rna[i] == 'C' && rna[i + 1] == 'A' && rna[i + 2] == 'U') || (rna[i] == 'C' && rna[i + 1] == 'A' && rna[i + 2] == 'C'))
         {
-            strcat(yazdir, "His-");
+            strcat(aminoasit, "His-");
             bulundu = 1;
         }
         else if ((rna[i] == 'A' && rna[i + 1] == 'U' && rna[i + 2] == 'U') || (rna[i] == 'A' && rna[i + 1] == 'U' && rna[i + 2] == 'C') || (rna[i] == 'A' && rna[i + 1] == 'U' && rna[i + 2] == 'A'))
         {
-            strcat(yazdir, "Ile-");
+            strcat(aminoasit, "Ile-");
             bulundu = 1;
         }
         else if ((rna[i] == 'U' && rna[i + 1] == 'G' && rna[i + 2] == 'G'))
         {
-            strcat(yazdir, "Trp-");
+            strcat(aminoasit, "Trp-");
             bulundu = 1;
         }
         else if ((rna[i] == 'U' && rna[i + 1] == 'A' && rna[i + 2] == 'C'))
         {
-            strcat(yazdir, "Tyr-");
+            strcat(aminoasit, "Tyr-");
             bulundu = 1;
         }
         else if ((rna[i] == 'U' && rna[i + 1] == 'U' && rna[i + 2] == 'U') || (rna[i] == 'U' && rna[i + 1] == 'U' && rna[i + 2] == 'C'))
         {
-            strcat(yazdir, "Phe-");
+            strcat(aminoasit, "Phe-");
             bulundu = 1;
         }
     }

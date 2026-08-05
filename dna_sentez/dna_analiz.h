@@ -1,7 +1,7 @@
 #ifndef DNA_ANALIZ_H
 #define DNA_ANALIZ_H
 
-int proteinSentezi(char rna[], int uzunluk, char yazdir[]);
+int proteinSentezi(char rna[], int uzunluk, char aminoasit[]);
 float gcOrani(int g, int c, int uzunluk);
 void nukleotidSay(char dna[], int uzunluk, int *a, int *t, int *c, int *g);
 void dnaTamamla(char dna[], char comp[], int uzunluk);

@@ -13,11 +13,13 @@ Bu proje, C programlama dili kullanılarak geliştirilmiş temel bir biyoinforma
 
 Projeyi yerel ortamda derlemek için terminal ekranında aşağıdaki komutu çalıştırın:
 
-gcc main.c dna_sentez/dna_analiz.c -o bioinfo_app
+ .\bioinfo_app.exe doku_analiz.fasta rapor_sonuc.txt
 
 Derleme işlemi tamamlandıktan sonra programı çalıştırarak analiz yapmak için şu komutu kullanın:
 
  .\test.exe doku_analiz.fasta rapor_sonuc.txt
+
+ .\bioinfo_app.exe doku_analiz.fasta rapor_sonuc.txt
 
 ## Güncellemelerden haberdar olmak için sayfamızdaki commit satırlarını okumayı ihmal etmeyiniz
 
